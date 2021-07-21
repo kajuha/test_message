@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="test_message" type="test_message" name="test_message" output="screen">
+    </node>
+</launch>

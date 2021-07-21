@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(testMessage)
+project(test_message)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -102,7 +102,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES testMessage
+#  LIBRARIES test_message
 #  CATKIN_DEPENDS roscpp
 #  DEPENDS system_lib
 )
@@ -120,7 +120,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/testMessage.cpp
+#   src/${PROJECT_NAME}/test_message.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -147,6 +147,10 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+# ROS 함수를 사용할 경우 아래를 활성화 시켜야함
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -195,7 +199,7 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_testMessage.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_test_message.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
