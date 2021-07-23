@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="test_message" type="test_topic_pub" name="test_topic_pub" output="screen">
+    </node>
+    <node pkg="test_message" type="test_topic_sub" name="test_topic_sub" output="screen">
+    </node>
+</launch>

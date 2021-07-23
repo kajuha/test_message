@@ -8,7 +8,9 @@ project(test_message)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  message_generation
   roscpp
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -50,6 +52,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message1.msg
 #   Message2.msg
 # )
+add_message_files(
+  FILES
+  TopicTest.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -57,6 +63,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Service1.srv
 #   Service2.srv
 # )
+add_service_files(
+  FILES
+  ServiceTest.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -70,6 +80,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   DEPENDENCIES
 #   std_msgs  # Or other packages containing msgs
 # )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -103,7 +117,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES test_message
-#  CATKIN_DEPENDS roscpp
+#  CATKIN_DEPENDS message_generation roscpp std_msgs
 #  DEPENDS system_lib
 )
 
@@ -131,7 +145,10 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(test_topic_pub src/test_topic_pub.cpp)
+add_executable(test_topic_sub src/test_topic_sub.cpp)
+add_executable(test_service_server src/test_service_server.cpp)
+add_executable(test_service_client src/test_service_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -148,7 +165,16 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 #   ${catkin_LIBRARIES}
 # )
 # ROS 함수를 사용할 경우 아래를 활성화 시켜야함
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(test_topic_pub
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(test_topic_sub
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(test_service_server
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(test_service_client
   ${catkin_LIBRARIES}
 )
 
