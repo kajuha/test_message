@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   roscpp
   std_msgs
+  actionlib
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -74,6 +76,10 @@ add_service_files(
 #   Action1.action
 #   Action2.action
 # )
+add_action_files(
+  FILES
+  ActionTest.action
+)
 
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
@@ -83,6 +89,7 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
+  actionlib_msgs
 )
 
 ################################################
@@ -117,7 +124,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES test_message
-#  CATKIN_DEPENDS message_generation roscpp std_msgs
+#  CATKIN_DEPENDS message_generation roscpp std_msgs actionlib_msgs
 #  DEPENDS system_lib
 )
 
@@ -149,6 +156,8 @@ add_executable(test_topic_pub src/test_topic_pub.cpp)
 add_executable(test_topic_sub src/test_topic_sub.cpp)
 add_executable(test_service_server src/test_service_server.cpp)
 add_executable(test_service_client src/test_service_client.cpp)
+add_executable(test_action_server src/test_action_server.cpp)
+# add_executable(test_action_client src/test_action_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -159,6 +168,12 @@ add_executable(test_service_client src/test_service_client.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(test_topic_pub ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(test_topic_sub ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(test_service_server ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(test_service_client ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(test_action_server ${PROJECT_NAME}_generate_messages_cpp)
+# add_dependencies(test_action_client ${PROJECT_NAME}_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -177,6 +192,12 @@ target_link_libraries(test_service_server
 target_link_libraries(test_service_client
   ${catkin_LIBRARIES}
 )
+target_link_libraries(test_action_server
+  ${catkin_LIBRARIES}
+)
+# target_link_libraries(test_action_client
+#   ${catkin_LIBRARIES}
+# )
 
 #############
 ## Install ##

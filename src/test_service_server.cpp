@@ -6,7 +6,7 @@
 
 std::string _node_name;
 
-bool sumService(test_message::ServiceTest::Request &req, test_message::ServiceTest::Response &res)
+bool serviceCallback(test_message::ServiceTest::Request &req, test_message::ServiceTest::Response &res)
 {
     ros::Time time = ros::Time::now();
     res.sum = req.num1 + req.num2;
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     // server-client test start
     printf("--- server-client[%s] test start ---\n", _node_name.c_str());
 
-    ros::ServiceServer service_srv = nh.advertiseService("test_service", sumService);
+    ros::ServiceServer service_srv = nh.advertiseService("test_service", serviceCallback);
 
     while (ros::ok()) {
         ros::spinOnce();
