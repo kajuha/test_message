@@ -157,7 +157,7 @@ add_executable(test_topic_sub src/test_topic_sub.cpp)
 add_executable(test_service_server src/test_service_server.cpp)
 add_executable(test_service_client src/test_service_client.cpp)
 add_executable(test_action_server src/test_action_server.cpp)
-# add_executable(test_action_client src/test_action_client.cpp)
+add_executable(test_action_client src/test_action_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -173,7 +173,7 @@ add_dependencies(test_topic_sub ${PROJECT_NAME}_generate_messages_cpp)
 add_dependencies(test_service_server ${PROJECT_NAME}_generate_messages_cpp)
 add_dependencies(test_service_client ${PROJECT_NAME}_generate_messages_cpp)
 add_dependencies(test_action_server ${PROJECT_NAME}_generate_messages_cpp)
-# add_dependencies(test_action_client ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(test_action_client ${PROJECT_NAME}_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -195,9 +195,9 @@ target_link_libraries(test_service_client
 target_link_libraries(test_action_server
   ${catkin_LIBRARIES}
 )
-# target_link_libraries(test_action_client
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(test_action_client
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

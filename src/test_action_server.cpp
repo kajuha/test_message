@@ -65,13 +65,14 @@ int main(int argc, char** argv) {
     ROS_INFO("node_name: %s", _node_name.c_str());
 
 
-    // action test start
-    printf("--- action[%s] test start ---\n", _node_name.c_str());
+    // action server test start
+    printf("--- action server[%s] test start ---\n", _node_name.c_str());
 
     TestAction testAction("test_action");
+    ros::spin();
 
-    printf("--- action[%s] test end ---\n", _node_name.c_str());
-    // action test end
+    printf("--- action server[%s] test end ---\n", _node_name.c_str());
+    // action server test end
 
     return 0;
 }

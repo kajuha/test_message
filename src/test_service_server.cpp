@@ -28,8 +28,8 @@ int main(int argc, char** argv) {
     int control_hz = 100;
     ros::Rate loop_hz(control_hz);
 
-    // server-client test start
-    printf("--- server-client[%s] test start ---\n", _node_name.c_str());
+    // service server test start
+    printf("--- service server[%s] test start ---\n", _node_name.c_str());
 
     ros::ServiceServer service_srv = nh.advertiseService("test_service", serviceCallback);
 
@@ -38,8 +38,8 @@ int main(int argc, char** argv) {
         loop_hz.sleep();
     }
 
-    printf("--- server-client[%s] test end ---\n", _node_name.c_str());
-    // server-client test end
+    printf("--- service server[%s] test end ---\n", _node_name.c_str());
+    // service server test end
 
     return 0;
 }

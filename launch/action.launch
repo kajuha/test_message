@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="test_message" type="test_action_server" name="test_action_server" output="screen">
+    </node>
+    <node pkg="test_message" type="test_action_client" name="test_action_client" output="screen">
+    </node>
+</launch>
