@@ -26,7 +26,7 @@ class TestAction {
     }
 
     void callback(const test_message::ActionTestGoalConstPtr &goal) {
-        int control_hz = 100;
+        int control_hz = 1;
         ros::Rate loop_hz(control_hz);
         bool success = true;
 
@@ -57,9 +57,9 @@ class TestAction {
 };
 
 int main(int argc, char** argv) {
-    // rosrun으로 실행할 경우 noname이 되며
+    // rosrun으로 실행할 경우 actionServerNode이 되며
     // roslaunch으로 실행할 경우 roslaunch의 name으로 됨 
-    ros::init(argc, argv, "noname");
+    ros::init(argc, argv, "actionServerNode");
 
     _node_name = ros::this_node::getName();
     ROS_INFO("node_name: %s", _node_name.c_str());

@@ -7,9 +7,9 @@
 std::string _node_name;
 
 int main(int argc, char** argv) {
-    // rosrun으로 실행할 경우 noname이 되며
+    // rosrun으로 실행할 경우 srvClientNode이 되며
     // roslaunch으로 실행할 경우 roslaunch의 name으로 됨 
-    ros::init(argc, argv, "noname");
+    ros::init(argc, argv, "srvClientNode");
 
     _node_name = ros::this_node::getName();
     ROS_INFO("node_name: %s", _node_name.c_str());

@@ -7,9 +7,9 @@
 std::string _node_name;
 
 int main(int argc, char** argv) {
-    // rosrun으로 실행할 경우 noname이 되며
+    // rosrun으로 실행할 경우 topicPubNode이 되며
     // roslaunch으로 실행할 경우 roslaunch의 name으로 됨 
-    ros::init(argc, argv, "noname");
+    ros::init(argc, argv, "topicPubNode");
 
     _node_name = ros::this_node::getName();
     ROS_INFO("node_name: %s", _node_name.c_str());
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     // topic test start
     printf("--- topic test[%s] test start ---\n", _node_name.c_str());
 
-    ros::Publisher topic_pub = nh.advertise<test_message::TopicTest>("test_topic", 1000);
+    ros::Publisher topic_pub = nh.advertise<test_message::TopicTest>("/test_topic", 1000);
 
     while (ros::ok()) {
         ros::Time time = ros::Time::now();
