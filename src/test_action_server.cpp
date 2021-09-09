@@ -26,7 +26,7 @@ class TestAction {
     }
 
     void callback(const test_message::ActionTestGoalConstPtr &goal) {
-        int control_hz = 1;
+        int control_hz = 10;
         ros::Rate loop_hz(control_hz);
         bool success = true;
 
@@ -69,7 +69,9 @@ int main(int argc, char** argv) {
     printf("--- action server[%s] test start ---\n", _node_name.c_str());
 
     TestAction testAction("test_action");
-    ros::spin();
+    while(ros::ok()) {
+        ros::spin();
+    }
 
     printf("--- action server[%s] test end ---\n", _node_name.c_str());
     // action server test end
